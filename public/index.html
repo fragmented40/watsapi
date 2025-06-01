@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp QR y Mensajes</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #qr-container { display: none; text-align: center; margin-top: 20px; }
+        #qr-image { width: 250px; height: 250px; }
+        #messages { max-width: 600px; margin: auto; text-align: left; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Escanea el QR para conectar a WhatsApp</h1>
+    <div id="qr-container">
+        <img id="qr-image" src="" alt="QR de WhatsApp">
+    </div>
+    <div id="messages"><h2>Mensajes Recibidos</h2><ul id="message-list"></ul></div>
+
+    <script>
+        const socket = io();
+
+        socket.on('qr', qr => {
+            console.log('🛠️ QR recibido en cliente:', qr); // Verificar si llega al frontend
+            const qrContainer = document.getElementById('qr-container');
+            const qrImage = document.getElementById('qr-image');
+
+            if (qr) {
+                qrImage.src = qr; // Usa directamente la imagen
+                qrContainer.style.display = 'block';
+            } else {
+                console.error("❌ Error: QR no válido o vacío");
+            }
+        });
+
+        socket.on('connected', () => {
+            alert('✅ Conexión exitosa con WhatsApp');
+            document.getElementById('qr-container').style.display = 'none';
+        });
+
+        socket.on('message', message => {
+            const list = document.getElementById('message-list');
+            list.innerHTML += `<li><strong>${message.from}:</strong> ${message.body}</li>`;
+        });
+
+    </script>
+</body>
+</html>
