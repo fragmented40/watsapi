@@ -8,12 +8,22 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "��#\u0000 \u0000w\u0000a\u0000t\u0000s\u0000a\u0000p\u0000i\u0000\r\u0000 \u0000",
   "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
     "express": "^5.1.0",
+    "multer": "^2.0.0",
     "qrcode": "^1.5.4",
     "qrcode-terminal": "^0.12.0",
     "socket.io": "^4.8.1",
-    "whatsapp-web.js": "^1.29.0"
-  }
+    "whatsapp-web.js": "^1.30.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fragmented40/watsapi.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fragmented40/watsapi/issues"
+  },
+  "homepage": "https://github.com/fragmented40/watsapi#readme"
 }
